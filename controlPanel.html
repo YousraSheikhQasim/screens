@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="controlPanel.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- التشارت الأول -->
+        <div class="first-chart"></div>
+        <div class="bottom-section">
+            <!-- عمود جديد يجمع الشارت الثاني والدونات معاً -->
+            <div class="charts-column">
+                <!-- الشارت الثاني -->
+                <div class="second-chart">
+                    <canvas id="ordersChart"></canvas>
+                </div>
+                <!-- التشارت الدائري والتشارت الجديد للمشتريات -->
+                <div class="doughnut-purchases-container">
+                    <!-- التشارت الدائري -->
+                    <div class="doughnut-chart-container">
+                        <canvas id="doughnutChart"></canvas>
+                        <div class="doughnut-labels">
+                        </div>
+                    </div>
+
+                    <!-- التشارت الجديد للمشتريات -->
+                    <div class="purchases-chart-container">
+                        <h2 style="text-align: right; margin-bottom: 10px;">المشتريات</h2>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- الكاردز تبقى في مكانها الأصلي -->
+            <div class="five-cards"></div>
+        </div>
+    </div>
+    <nav class="menu-right"></nav>
+    <nav class="menu-left"></nav>
+    <nav class="header-container"></nav>
+    <h1> اهلا محمد </h1>
+    <nav class="footer-container"></nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            initCharts();
+            loadMenus();
+        });
+
+        function initCharts() {
+            initOrdersChart();
+            initDoughnutChart();
+            initPurchasesChart(); // Initialize the new purchases chart
+        }
+
+        function initOrdersChart() {
+            const ctx2 = document.getElementById('ordersChart');
+            if (ctx2) {
+                const data2 = {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+                    datasets: [
+                        {
+                            label: '١️⃣ ملغية',
+                            data: [50, 60, 70, 80, 90, 100, 80],
+                            borderColor: 'rgba(255, 105, 135, 0.8)',
+                            backgroundColor: 'rgba(255, 105, 135, 0.2)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            borderWidth: 2,
+                        },
+                        {
+                            label: '٢️⃣ مرجعة',
+                            data: [40, 50, 60, 70, 80, 90, 70],
+                            borderColor: 'rgba(173, 216, 230, 0.8)',
+                            backgroundColor: 'rgba(173, 216, 230, 0.2)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            borderWidth: 2,
+                        },
+                        {
+                            label: '٣️⃣ مكتملة',
+                            data: [30, 40, 50, 60, 70, 80, 60],
+                            borderColor: 'rgba(135, 206, 235, 0.8)',
+                            backgroundColor: 'rgba(135, 206, 235, 0.2)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            borderWidth: 2,
+                        },
+                        {
+                            label: '٤️⃣ جديدة',
+                            data: [20, 30, 40, 50, 60, 70, 50],
+                            borderColor: 'rgba(173, 127, 252, 0.8)',
+                            backgroundColor: 'rgba(173, 127, 252, 0.2)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            borderWidth: 2,
+                        },
+                    ],
+                };
+                new Chart(ctx2, {
+                    type: 'line',
+                    data: data2,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                position: 'right',
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + 'k';
+                                    },
+                                },
+                                grid: { display: false },
+                            },
+                            x: { grid: { display: false } },
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                align: 'end',
+                                labels: {
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    boxWidth: 10,
+                                    boxHeight: 10,
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+        }
+
+        function initDoughnutChart() {
+            const ctx = document.getElementById('doughnutChart');
+            if (ctx) {
+                const xValues = ["اجمالي المنتجات المتاحة", "المنتجات المسجلة حديثاً على النظام"];
+                const yValues = [55, 20];
+                const barColors = ["#b41753", "#ad46a8"];
+                new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }],
+                        labels: xValues,
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "المخزون",
+                            fontSize: 20,
+                            fontColor: "#111",
+                            fontFamily: "Arial",
+                            fontStyle: "bold",
+                            padding: 20,
+                        },
+                        cutoutPercentage: 80,
+                        legend: {
+                            display: false
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            }
+        }
+
+        function initPurchasesChart() {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                    datasets: [
+                        {
+                            label: 'اجمالي مشتريات',
+                            data: [30000, 40000, 45000, 60000, 70000, 80000],
+                            backgroundColor: 'rgba(224, 255, 255, 0.5)',
+                            borderColor: 'rgba(224, 255, 255, 0.5)',
+                            fill: true,
+                            tension: 0.4,
+                        },
+                        {
+                            label: 'اجمالي موردات',
+                            data: [10000, 15000, 20000, 25000, 30000, 35000],
+                            backgroundColor: 'rgba(0, 200, 200, 0.3)',
+                            borderColor: 'rgba(0, 200, 200, 0.3)',
+                            fill: true,
+                            tension: 0.4,
+                        },
+                        {
+                            label: 'اجمالي خصومات على المشتريات',
+                            data: [5000, 8000, 10000, 12000, 15000, 18000],
+                            backgroundColor: 'rgba(0, 139, 139, 1)',
+                            borderColor: 'rgba(0, 139, 139, 1)',
+                            fill: true,
+                            tension: 0.4,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false // Hide vertical lines
+                            },
+                            stacked: true
+                        },
+                        y: {
+                            grid: {
+                                display: true,  // Show horizontal lines
+                                color: "#e0e0e0", // Horizontal line color (can be changed)
+                                drawBorder: false // Hide axis line if desired
+                            },
+                            stacked: true,
+                            position: 'right',
+                            ticks: {
+                                callback: function (value) {
+                                    return value / 1000 + 'k';
+                                }
+                            }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            radius: 0
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            intersect: false,
+                            mode: 'index'
+                        },
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: {
+                                    size: 14,
+                                    family: 'Arial',
+                                    style: 'bold',
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function loadMenus() {
+            fetch('menu.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.menu-right').innerHTML = data;
+                })
+                .catch(error => console.error('خطأ في تحميل القائمة اليمنى:', error));
+                /*
+            fetch('menu1.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.menu-left').innerHTML = data;
+                })
+                .catch(error => console.error('خطأ في تحميل القائمة اليسرى:', error));*/
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.footer-container').innerHTML = data;
+                })
+                .catch(error => console.error('خطأ في تحميل الفوتر:', error));
+            fetch('headerControlPanel.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.header-container').innerHTML = data;
+                })
+                .catch(error => console.error('خطأ في تحميل الهيدر:', error));
+            fetch('controlPanelChart4.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.first-chart').innerHTML = data;
+                    initFirstChart();
+                })
+                .catch(error => console.error('خطأ في التحميل:', error));
+            fetch('controlPanelCharts2.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.five-cards').innerHTML = data;
+                })
+                .catch(error => console.error('خطأ في التحميل:', error));
+        }
+
+        function initFirstChart() {
+            const ctx = document.getElementById('myChart');
+            if (ctx) {
+                const data = {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+                    datasets: [
+                        {
+                            label: 'اجمالي مبيعات',
+                            data: [80, 65, 90, 70, 85, 95, 75, 80, 90, 85, 70, 95],
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                            barThickness: 20,
+                            borderRadius: 20,
+                        },
+                        {
+                            label: 'اجمالي مرتجعات',
+                            data: [40, 35, 50, 40, 55, 65, 45, 50, 60, 55, 40, 65],
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1,
+                            barThickness: 20,
+                            borderRadius: 20,
+                        },
+                        {
+                            label: 'اجمالي خصومات على المبيعات',
+                            data: [20, 15, 30, 20, 25, 35, 25, 30, 40, 35, 20, 45],
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            barThickness: 20,
+                            borderRadius: 20,
+                        },
+                    ],
+                };
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'x',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: { display: false },
+                            },
+                            y: {
+                                beginAtZero: true,
+                                position: 'right',
+                                grid: { display: true, color: 'rgba(0, 0, 0, 0.1)' },
+                                ticks: {
+                                    callback: (value) => value + 'k',
+                                },
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    boxWidth: 100,
+                                    boxHeight: 10,
+                                    padding: 20,
+                                    align: 'left',
+                                    generateLabels: (chart) => {
+                                        let originalLabels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                                        return originalLabels.reverse();
+                                    },
+                                },
+                                position: 'top',
+                                align: 'start',
+                            },
+                        },
+                    },
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

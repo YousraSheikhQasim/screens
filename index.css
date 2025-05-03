@@ -1,0 +1,99 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Cairo', sans-serif;
+}
+
+.main-container {
+    margin-right: 250px;
+    margin-left: 20px;
+    transition: all 0.3s;
+    font-family: 'Cairo', sans-serif;
+}
+
+.form-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-top: 100px;
+    margin-right: 390px;
+    max-width: 80rem;
+    font-family: 'Cairo', sans-serif;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid #9c1c1c;
+    color: #9c1c1c;
+    margin-right: 5px;
+    border-radius: 50px;
+    /* تقويس اليمين واليسار */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-color: #9c1c1c !important;
+    font-family: 'Cairo', sans-serif;
+
+}
+
+
+.nav-tabs .nav-link,
+.nav-tabs .nav-link {
+    background-color: #ffffff !important;
+    border-color: #9c1c1c !important;
+    color: rgb(0, 0, 0) !important;
+    border-radius: 50px !important;
+    font-family: 'Cairo', sans-serif;
+    border-bottom: #ffffff;
+
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #9c1c1c !important;
+    border-color: #9c1c1c !important;
+    color: white !important;
+    border-radius: 50px !important;
+    font-family: 'Cairo', sans-serif;
+    border-bottom: #ffffff;
+
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #7e1717 !important;
+    border-color: #7e1717 !important;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    border-bottom: #ffffff;
+}
+
+
+.btn-primary-custom {
+    background-color: #9c1c1c !important;
+    border-color: #9c1c1c !important;
+    color: white !important;
+    border-radius: 100px !important;
+    font-family: 'Cairo', sans-serif;
+}
+
+.btn-primary-custom:hover {
+    background-color: #7e1717 !important;
+    border-color: #7e1717 !important;
+}
+
+.btn-outline-custom {
+    border-color: #9c1c1c !important;
+    color: #9c1c1c !important;
+    border-radius: 100px !important;
+}
+
+.btn-outline-custom:hover {
+    background-color: #9c1c1c !important;
+    color: white !important;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+@media (max-width: 992px) {
+    .main-container {
+        margin-right: 0;
+    }
+}

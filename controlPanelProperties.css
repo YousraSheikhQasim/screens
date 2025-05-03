@@ -1,0 +1,75 @@
+/* تخصيصات عامة */
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #e9c5c5;
+}
+
+/* تخصيصات البوكس الرئيسي */
+.box {
+    background-color: white;
+    border-radius: 50px;
+    margin-top: 200px;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تخصيصات الأزرار */
+.btn.properties {
+    background-color: #9c1c1c;
+    color: white;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Cairo', sans-serif;
+}
+
+.btn.asset {
+    border: 1px solid #9c1c1c;
+    color: #9c1c1c;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Cairo', sans-serif;
+}
+
+.btn.properties:hover {
+    background-color: #7a1616;
+}
+
+.btn.asset:hover {
+    background-color: #f1f1f1;
+}
+
+/* تخصيصات السايدبار */
+.sidebar {
+    font-family: 'Cairo', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul li a {
+    font-family: 'Cairo', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f1f1f1;
+}
+
+.indicator {
+    color: #9c1c1c;
+}
+
+/* تخصيصات إضافية للشكل */
+h2 {
+    color: #444;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+}
+
+.form-label {
+    font-weight: bold;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تعديلات للتوافق مع RTL */
+.form-select {
+    font-family: 'Cairo', sans-serif;
+    background-position: left 0.75rem center;
+}

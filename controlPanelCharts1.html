@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #fff;
+            text-align: center;
+            display: inline;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+            height: 400px;
+            margin: auto;
+        }
+        .purchases {
+            color: #000000;
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 40rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="purchases">المشتريات</h2>
+
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                datasets: [
+                    {
+                        label: 'اجمالي مشتريات',
+
+                        data: [30000, 40000, 45000, 60000, 70000, 80000],
+                        backgroundColor: 'rgba(224, 255, 255, 0.5)',
+                        borderColor: 'rgba(224, 255, 255, 0.5)',
+                        fill: true,
+                        tension: 0.4,
+                    },
+                    {
+                        label: 'اجمالي موردات',
+                        data: [10000, 15000, 20000, 25000, 30000, 35000],
+                        backgroundColor: 'rgba(0, 200, 200, 0.3)',
+                        borderColor: 'rgba(0, 200, 200, 0.3)',
+                        fill: true,
+                        tension: 0.4,
+                    },
+                    {
+                        label: 'اجمالي خصومات على المشتريات',
+                        data: [5000, 8000, 10000, 12000, 15000, 18000],
+                        backgroundColor: 'rgba(0, 139, 139, 1)',
+                        borderColor: 'rgba(0, 139, 139, 1)',
+                        fill: true,
+                        tension: 0.4,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false // نخفي الخطوط العمودية
+                        },
+                        stacked: true
+                    },
+                    y: {
+                        grid: {
+                            display: true,  // نظهر الخطوط الأفقية
+                            color: "#e0e0e0", // لون الخطوط الأفقية (ممكن تغييره)
+                            drawBorder: false // نخفي خط المحور نفسه لو تحب
+                        },
+                        stacked: true,
+                        position: 'right',
+                        ticks: {
+                            callback: function (value) {
+                                return value / 1000 + 'k';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        enabled: true,
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: {
+                                size: 14,
+                                family: 'Arial',
+                                style: 'bold',
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        });
+    </script>
+
+</body>
+
+</html>

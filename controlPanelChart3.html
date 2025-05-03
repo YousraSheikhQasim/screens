@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>الرسوم البيانية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: right;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            max-height: 400px;
+            /* تحديد الحد الأقصى للارتفاع */
+            height: auto;
+            /* تعيين الارتفاع بشكل تلقائي */
+        }
+
+        .chart-box {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+
+            margin: 20px 220px 20px 80px;
+            /* فوق, يمين, تحت, يسار */
+            max-width: calc(100% - 1500px);
+            /* خصم عرض القوائم من كامل العرض */
+            width: auto;
+            height: 500px;
+        }
+
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chart-box">
+        <div class="chart-container">
+            <h2>الطلبات</h2>
+            <canvas id="ordersChart"></canvas>
+        </div>
+
+    </div>
+    <!-- إضافة مكتبة Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // تهيئة البيانات
+        const data = {
+            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+            datasets: [
+                {
+                    label: '١️⃣ ملغية',
+                    data: [50, 60, 70, 80, 90, 100, 80],
+                    borderColor: 'rgba(255, 105, 135, 0.2)', // اللون الوردي
+                    backgroundColor: 'rgba(255, 105, 135, 0.2)', // خلفية شفافة
+                    fill: true,
+                    tension: 0.4, // سلاسة الخطوط
+                    pointRadius: 0, // إخفاء النقاط
+                    borderWidth: 2, // تحديد سمك الخط
+                },
+                {
+                    label: '٢️⃣ مرجعة',
+                    data: [40, 50, 60, 70, 80, 90, 70],
+                    borderColor: 'rgba(173, 216, 230, 0.2)', // اللون الأزرق الفاتح
+                    backgroundColor: 'rgba(173, 216, 230, 0.2)', // خلفية شفافة
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0, // إخفاء النقاط
+                    borderWidth: 2, // تحديد سمك الخط
+                },
+                {
+                    label: '٣️⃣ مكتملة',
+                    data: [30, 40, 50, 60, 70, 80, 60],
+                    borderColor: 'rgba(135, 206, 235, 0.2)', // اللون الأخضر الفاتح
+                    backgroundColor: 'rgba(135, 206, 235, 0.2)', // خلفية شفافة
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0, // إخفاء النقاط
+                    borderWidth: 2, // تحديد سمك الخط
+                },
+                {
+                    label: '٤️⃣ جديدة',
+                    data: [20, 30, 40, 50, 60, 70, 50],
+                    borderColor: 'rgba(173, 127, 252, 0.2)', // اللون البنفسجي الفاتح
+                    backgroundColor: 'rgba(173, 127, 252, 0.2)', // خلفية شفافة
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0, // إخفاء النقاط
+                    borderWidth: 2, // تحديد سمك الخط
+                },
+            ],
+        };
+
+        // تهيئة الخيارات
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // منع الحفاظ على النسبة
+                scales: {
+                    y: {
+                        position: 'right', // تغيير مكان المحور ليكون على اليمين
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value + 'k'; // إضافة "k" بعد القيم
+                            },
+                        },
+                        grid: {
+                            display: false, // إخفاء الشبكة في المحور Y
+                        },
+                    },
+                    x: {
+                        grid: {
+                            display: false, // إخفاء الشبكة في المحور X
+                        },
+                    },
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'end', // مركز أسفل يمين
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            boxWidth: 10,
+                            boxHeight: 10,
+                        },
+                    },
+                },
+            },
+        };
+
+        // إنشاء الرسم البياني
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+
+        new Chart(ctx, config);
+    </script>
+</body>
+
+</html>

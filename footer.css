@@ -1,0 +1,81 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    font-size: 13px;
+    border-top: 1px solid #ccc; /* لون رمادي خفيف */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* تحسين شكل الفوتر */
+  }
+
+  .footer .social-icons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .footer .social-icons a {
+    color: rgb(156, 28, 28);
+    border: 1px solid rgb(156, 28, 28);
+    border-radius: 50%;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .footer .social-icons a:hover {
+    background-color: red;
+    color: white;
+  }
+
+  .copyright {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    color: #000000;
+    
+  }
+   /* تخصيصات إضافية */
+   .footer-custom {
+    background-color: #ffffff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .social-icon-custom {
+    color: rgb(156, 28, 28);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 13px;
+  }
+  
+  .social-icon-custom:hover {
+    background-color: rgb(156, 28, 28);
+    color: white;
+  }
+  .text{
+    color: #000000;
+  }

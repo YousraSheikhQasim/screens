@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج بحث الموظفين</title>
+    <!-- Bootstrap RTL CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="customizSearch.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="menu-right"></nav>
+    <nav class="header-container"></nav>
+    <!-- القوائم الجانبية -->
+
+    <nav class="menu-left"></nav>
+
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content container py-4">
+        <!-- شريط البحث العلوي -->
+        <div class="search-header d-flex justify-content-between align-items-center">
+            <span class="search-title">ابحث في ملفات الموظفين</span>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
+
+        <!-- بطاقة البحث -->
+        <div class="custom-card">
+            <h5 class="title mb-4">تخصص البحث</h5>
+
+            <form class="row g-3">
+                <div class="col-md-4">
+                    <label for="fileCatigory" class="form-label">فئة الملف</label>
+                    <select class="form-select" id="fileCatigory">
+                        <option value="" disabled selected>ملف الموظفين</option>
+                        <option>مستند 1</option>
+                        <option>مستند 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="num" class="form-label">رقم</label>
+                    <select class="form-select" id="num">
+                        <option>توجيه المستند</option>
+                        <option>مستند 1</option>
+                        <option>مستند 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="between" class="form-label">بين</label>
+                    <input type="date" class="form-control" id="between">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="dateFrom" class="form-label">من تاريخ</label>
+                    <input type="date" class="form-control" id="dateFrom">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="dateTo" class="form-label">إلى تاريخ</label>
+                    <input type="date" class="form-control" id="dateTo">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="name" class="form-label">اسم</label>
+                    <input type="text" class="form-control" id="name" placeholder="أحمد عمر">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="content" class="form-label">محتوي على</label>
+                    <select class="form-select" id="content">
+                        <option value="" disabled selected>اختر</option>
+                        <option>اختر 1</option>
+                        <option>اختر 2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="enter" class="form-label">ادخال</label>
+                    <input type="text" class="form-control" id="enter" placeholder="توجيه المستند">
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="search-btn">ابحث</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- بطاقة الجدول -->
+        <div class="custom-card">
+            <div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th><label>رقم الموظف</label></th>
+                            <th><label>اسم 1</label></th>
+                            <th><label>الوظيفة</label></th>
+                            <th><label>كود الادارة</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label>986000975</label></td>
+                            <td><label>احمد عامر</label></td>
+                            <td><label>مسؤول مالي</label></td>
+                            <td><label>986000975</label></td>
+                        </tr>
+                        <tr>
+                            <td><label>986000975</label></td>
+                            <td><label>احمد عامر</label></td>
+                            <td><label>مسؤول مالي</label></td>
+                            <td><label>986000975</label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <div class="footer-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // دالة لتهيئة القائمة الجانبية
+        function initSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            const mobileToggle = document.getElementById('mobileToggle');
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    sidebar.classList.toggle('collapsed');
+                    // حفظ الحالة في localStorage
+                    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+                });
+            }
+
+            // استعادة الحالة من localStorage
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+            }
+        }
+
+        // تحميل القوائم
+        Promise.all([
+            fetch('menu.html').then(res => res.text()),
+            fetch('header.html').then(res => res.text()),
+            fetch('footer.html').then(res => res.text())
+        ])
+            .then(([menu, header, footer]) => {
+                document.querySelector('.menu-right').innerHTML = menu;
+                document.querySelector('.header-container').innerHTML = header;
+                document.querySelector('.footer-container').innerHTML = footer;
+
+                // تهيئة القائمة بعد التحميل
+                initSidebar();
+
+                // تهيئة زر القائمة للجوال
+                document.getElementById('mobileToggle')?.addEventListener('click', function () {
+                    document.querySelector('.sidebar').classList.toggle('collapsed');
+                });
+            })
+            .catch(error => {
+                console.error('حدث خطأ في تحميل المكونات:', error);
+            });
+
+        // التعامل مع تغيير حجم النافذة
+        window.addEventListener('resize', function () {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.add('collapsed');
+            } else {
+                // استعادة الحالة فقط للشاشات الكبيرة
+                const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
+                document.querySelector('.sidebar').classList.toggle('collapsed', shouldCollapse);
+            }
+        });
+
+        // تهيئة أولية عند التحميل
+        window.addEventListener('DOMContentLoaded', function () {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar')?.classList.add('collapsed');
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

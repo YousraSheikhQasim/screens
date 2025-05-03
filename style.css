@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+  
+  }
+  
+  body {
+    margin: 0;
+    padding: 2rem;
+
+ 
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 50px;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgb(156, 28, 28);
+    background-color: transparent;
+    color:  rgb(156, 28, 28);
+    cursor: pointer;
+  }
+  
+  .btn.properties {
+    background-color: rgb(156, 28, 28);
+    color: white;
+  }
+  
+  h2 {
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  
+  .form-grid {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .form-grid textarea,
+  .form-grid input,
+  .form-grid select {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+  }
+  
+  .form-grid textarea {
+    grid-column: span 2;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    direction: rtl; 
+  }
+  
+  .form-grid div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center; 
+    gap: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .box {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 83%;
+    margin: 9rem 240px 3rem 700px; 
+}
+
+  .back{
+    display: flex;
+    font-family: sans-serif;
+    justify-content: center; 
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #fefafa;
+    margin-top: 1rem;
+    border: none;
+  }
+  
+  body {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl; 
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #ffffff;
+    color: black; /* تأكد من تغيير اللون إلى الأسود لقراءة أفضل */
+    padding: 20px;
+    text-align: right; /* يجعل النص يظهر من اليمين */
+}
+
+.sidebar h1 {
+    margin: 0;
+    font-size: 18px;
+    color: black; /* تغيير اللون للنصوص داخل الهيدر */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    position: relative;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+    transition: background-color 0.3s ease;
+    background-color: #ffffff;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f1f1f1; /* يمكنك تغيير هذا إلى اللون الذي تفضله */
+}
+
+.sidebar ul li.active a {
+    background-color: #ffffff;
+    color: #ffffff;
+}
+
+.sidebar ul li i {
+    font-size: 18px;
+    margin-left: 10px; /* تعديل الهامش ليظهر الأيقونة على اليسار بالنسبة للكتابة من اليمين */
+    align-self: start;
+}
+
+.indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -10px; /* جعل المؤشر يظهر على اليمين */
+    color: rgb(156, 28, 28);
+}
+
+.indicator::before {
+    content: "•";
+    font-size: 12px;
+}
+
+.arrow {
+    font-size: 18px;
+    margin-left: auto;
+}
+.logo {
+    width: 150px; 
+    height: 50px;
+    margin-left: 10px; 
+    margin-right: 10px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.btn.issuing {
+  background-color: rgb(156, 28, 28);
+  color: white;
+}
+
+#menu-right .sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  /* عرض القائمة اليمنى */
+  background: #ffffff;
+  height: 100vh;
+  color: white;
+}
+
+#menu-left .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  /* عرض القائمة اليسرى الصغيرة */
+  background: #2d2d2d;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+}
+.main-layout {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}

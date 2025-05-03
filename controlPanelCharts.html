@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<!-- هنا نكتب العناوين تحت الرسم -->
+<div style="text-align:left; margin-top:20px; font-family:Arial; font-size:16px; margin-left:200px;">
+  <div style="color:#b41753; margin:5px;">اجمالي المنتجات المتاحة</div>
+  <div style="color:#ad46a8; margin:5px;">المنتجات المسجلة حديثاً على النظام</div>
+</div>
+
+<script>
+const xValues = ["اجمالي المنتجات المتاحة", "المنتجات المسجلة حديثاً على النظام"];
+const yValues = [55, 20];
+const barColors = [
+  "#b41753",
+  "#ad46a8"
+];
+
+new Chart("myChart", {
+  type: "doughnut",
+  data: {
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }],
+    labels: xValues,
+  },
+  options: {
+    title: {
+      display: true,
+      text: "المخزون",
+      fontSize: 20,
+      fontColor: "#111",
+      fontFamily: "Arial",
+      fontStyle: "bold",
+      padding: 20,
+    },
+    cutoutPercentage: 80,
+    legend: {
+      display: false // اخفاء اللجند الافتراضي
+    }
+  }
+});
+</script>
+
+</body>
+</html>
