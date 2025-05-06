@@ -8,11 +8,137 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="controlPanel.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: rgb(255, 243, 243);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+            margin-right: 220px;
+            /* مساحة للقائمة الجانبية */
+            margin-left: 80px;
+            /* مساحة للقائمة الجانبية الصغيرة */
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: right;
+            color: #2d2d2d;
+            font-size: 24px;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        /* تنسيقات الشارتات */
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            height: 100%;
+        }
+
+        .bottom-section {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .charts-column {
+            flex: 2;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .doughnut-purchases-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .doughnut-chart-container,
+        .purchases-chart-container {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+        }
+
+        .doughnut-labels {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .five-cards {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        /* تنسيقات للشاشات الصغيرة */
+        @media (max-width: 1200px) {
+            .main-container {
+                margin-right: 60px;
+                margin-left: 50px;
+            }
+
+            .doughnut-purchases-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+
+            .bottom-section {
+                flex-direction: column;
+            }
+
+            .charts-column,
+            .doughnut-chart-container,
+            .purchases-chart-container,
+            .five-cards {
+                min-width: 100%;
+            }
+
+            h1 {
+                margin-top: 10px;
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="ba" style="background-color: rgb(255, 243, 243);">
+
     <div class="main-container">
+        <h1> اهلا محمد </h1>
         <!-- التشارت الأول -->
         <div class="first-chart"></div>
         <div class="bottom-section">
@@ -45,7 +171,7 @@
     <nav class="menu-right"></nav>
     <nav class="menu-left"></nav>
     <nav class="header-container"></nav>
-    <h1> اهلا محمد </h1>
+
     <nav class="footer-container"></nav>
 
     <script>
@@ -267,31 +393,6 @@
         }
 
         function loadMenus() {
-            fetch('menu.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.menu-right').innerHTML = data;
-                })
-                .catch(error => console.error('خطأ في تحميل القائمة اليمنى:', error));
-                /*
-            fetch('menu1.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.menu-left').innerHTML = data;
-                })
-                .catch(error => console.error('خطأ في تحميل القائمة اليسرى:', error));*/
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.footer-container').innerHTML = data;
-                })
-                .catch(error => console.error('خطأ في تحميل الفوتر:', error));
-            fetch('headerControlPanel.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.header-container').innerHTML = data;
-                })
-                .catch(error => console.error('خطأ في تحميل الهيدر:', error));
             fetch('controlPanelChart4.html')
                 .then(response => response.text())
                 .then(data => {
@@ -385,6 +486,105 @@
                 });
             }
         }
+        // دالة لتهيئة القائمة الجانبية
+        function initSidebar() {
+            const sidebar = document.querySelector('.sidebar-right');  // تأكد من أنك تستهدف الصنف الصحيح
+            const toggleBtn = document.querySelector('.toggle-btn');
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    sidebar.classList.toggle('collapsed');
+                    // حفظ الحالة في localStorage
+                    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+                });
+            }
+
+            // استعادة الحالة من localStorage
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+            }
+        }
+        // دالة لتهيئة القائمة الجانبية
+        function initSidebar() {
+            const sidebar = document.querySelector('.sidebar-right');  // تأكد من أنك تستهدف الصنف الصحيح
+            const toggleBtn = document.querySelector('.toggle-btn');
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    sidebar.classList.toggle('collapsed');
+                    document.body.classList.toggle('collapsed'); // أضف هذا
+                    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+                });
+            }
+
+            // استعادة الحالة من localStorage
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+                document.body.classList.add('collapsed'); // أضف هذا
+            }
+        }
+
+        // تحميل القوائم
+        Promise.all([
+            fetch('menu1.html').then(res => res.text()),
+            fetch('header.html').then(res => res.text()),
+            fetch('footer.html').then(res => res.text())
+        ])
+            .then(([menu, header, footer]) => {
+                // إضافة المحتوى إلى الصفحة بعد تحميل المكونات
+                document.querySelector('.menu-right').innerHTML = menu;
+                document.querySelector('.header-container').innerHTML = header;
+                document.querySelector('.footer-container').innerHTML = footer;
+
+                // تهيئة القائمة الجانبية بعد تحميل المحتوى
+                initSidebar();
+
+                // تهيئة زر القائمة للجوال
+                document.getElementById('mobileToggle')?.addEventListener('click', function () {
+                    document.querySelector('.sidebar-right').classList.toggle('collapsed');
+                });
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleBtn = document.getElementById('menuToggleBtn');
+                const popupMenu = document.getElementById('popupMenu');
+                if (menuToggleBtn && popupMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleBtn.addEventListener('click', function () {
+                        popupMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleButton = document.getElementById('menuToggleButton');
+                const subMenu = document.getElementById('subMenu');
+                if (menuToggleButton && subMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleButton.addEventListener('click', function () {
+                        subMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('حدث خطأ في تحميل المكونات:', error);
+            });
+
+        // التعامل مع تغيير حجم النافذة
+        window.addEventListener('resize', function () {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar-right').classList.add('collapsed');
+            } else {
+                // استعادة الحالة فقط للشاشات الكبيرة
+                const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
+                document.querySelector('.sidebar-right').classList.toggle('collapsed', shouldCollapse);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', function () {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar-right')?.classList.add('collapsed');
+            }
+        });
+
     </script>
 </body>
 

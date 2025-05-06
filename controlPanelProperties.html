@@ -19,71 +19,67 @@
     <link rel="stylesheet" href="controlPanelProperties.css">
 </head>
 
-<body class="bg-light">
-    <!-- Header -->
+<body class="ba" style="background-color: rgb(255, 243, 243);">
+    <button class="back"> < رجوع </button>
+    <nav class="menu-right"></nav>
     <nav class="header-container"></nav>
+    <!-- القوائم الجانبية -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Right Sidebar -->
-            <div class="col-md-2">
-                <nav class="menu-right sidebar bg-white vh-100 position-fixed end-0"></nav>
-            </div>
-
-            <!-- Main Content -->
-            <div class="col-md-8 mx-auto">
-                <div class="box card shadow-xxl mt-10 mb-8">
-                    <div class="card-body">
-                        <div class="tabs d-flex justify-content-start gap-2 mb-4">
-                            <button class="btn properties btn-danger">خصائص المستندات</button>
-                            <button class="btn asset btn-outline-danger">خصائص الاصل</button>
-                        </div>
-
-                        <h2 class="mb-4">خصائص المستندات</h2>
-
-                        <form class="row g-3">
-                            <!-- الصف الأول -->
-                            <div class="col-md-4">
-                                <label for="document-number" class="form-label">رقم المستند</label>
-                                <input type="text" class="form-control" id="document-number" placeholder="9876533309">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="doc-routing" class="form-label">توجيه المستند</label>
-                                <select class="form-select" id="doc-routing">
-                                    <option value="" disabled selected>توجيه المستند</option>
-                                    <option value="doc-routing">توجيه 1</option>
-                                    <option value="doc-routing">توجيه 2</option>
-                                    <option value="doc-routing">توجيه 3</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="editing-date" class="form-label">تاريخ التحرير</label>
-                                <input type="date" class="form-control" id="editing-date" placeholder="7/6/2025">
-                            </div>
-
-                            <!-- الصف الثاني -->
-                            <div class="col-1 col-md-4">
-                                <label for="document-code" class="form-label">الكود التحليلي</label>
-                                <input type="text" class="form-control" id="document-code" placeholder="9876533309">
-                            </div>
-
-                            <!-- الملاحظة -->
-                            <div class="col-md-12">
-                                <label for="note" class="form-label">ملاحظة</label>
-                                <textarea class="form-control" id="note" rows="3" placeholder="أدخل ملاحظة"></textarea>
-                            </div>
-                        </form>
-                    </div>
+    <nav class="menu-left"></nav>
+    <!-- Main Content -->
+    <div class="col-md-8 mx-auto">
+        <div class="box ">
+            <div class="card-body">
+                <div class="tabs d-flex justify-content-start gap-2 mb-4">
+                    <button class="custom-btn properties btn-danger active">خصائص المستندات</button>
+                    <button class="custom-btn asset btn-outline-danger">خصائص الاصل</button>
                 </div>
-            </div>
 
-            <!-- Left Sidebar -->
-            <div class="col-md-2">
-                <nav class="menu-left"></nav>
+                <h2 class="mb-4">خصائص المستندات</h2>
+
+                <form class="row g-3">
+                    <!-- الصف الأول -->
+                    <div class="col-md-4">
+                        <label for="document-number" class="form-label">رقم المستند</label>
+                        <input type="text" class="form-control" id="document-number" placeholder="9876533309">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="doc-routing" class="form-label">توجيه المستند</label>
+                        <select class="form-select" id="doc-routing">
+                            <option value="" disabled selected>توجيه المستند</option>
+                            <option value="doc-routing">توجيه 1</option>
+                            <option value="doc-routing">توجيه 2</option>
+                            <option value="doc-routing">توجيه 3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="editing-date" class="form-label">تاريخ التحرير</label>
+                        <input type="date" class="form-control" id="editing-date" placeholder="7/6/2025">
+                    </div>
+
+                    <!-- الصف الثاني -->
+                    <div class="col-1 col-md-4">
+                        <label for="document-code" class="form-label">الكود التحليلي</label>
+                        <input type="text" class="form-control" id="document-code" placeholder="9876533309">
+                    </div>
+
+                    <!-- الملاحظة -->
+                    <div class="col-md-12">
+                        <label for="note" class="form-label">ملاحظة</label>
+                        <textarea class="form-control" id="note" rows="3" placeholder="أدخل ملاحظة"></textarea>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+
+    <!-- Left Sidebar -->
+    <div class="col-md-2">
+        <nav class="menu-left"></nav>
+    </div>
+    </div>
     </div>
 
     <!-- Footer -->
@@ -95,14 +91,13 @@
     <script>
         // دالة لتهيئة القائمة الجانبية
         function initSidebar() {
-            const sidebar = document.querySelector('.sidebar');
+            const sidebar = document.querySelector('.sidebar-right');  // تأكد من أنك تستهدف الصنف الصحيح
             const toggleBtn = document.querySelector('.toggle-btn');
-            const mobileToggle = document.getElementById('mobileToggle');
 
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', function () {
                     sidebar.classList.toggle('collapsed');
-                    // حفظ الحالة في localStorage
+                    document.body.classList.toggle('collapsed'); // أضف هذا
                     localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
                 });
             }
@@ -110,27 +105,49 @@
             // استعادة الحالة من localStorage
             if (localStorage.getItem('sidebarCollapsed') === 'true') {
                 sidebar.classList.add('collapsed');
+                document.body.classList.add('collapsed'); // أضف هذا
             }
         }
 
         // تحميل القوائم
         Promise.all([
-            fetch('menu.html').then(res => res.text()),
-            fetch('header.html').then(res => res.text()),
+            fetch('menu1.html').then(res => res.text()),
+            fetch('assetHeader.html').then(res => res.text()),
             fetch('footer.html').then(res => res.text())
         ])
             .then(([menu, header, footer]) => {
+                // إضافة المحتوى إلى الصفحة بعد تحميل المكونات
                 document.querySelector('.menu-right').innerHTML = menu;
                 document.querySelector('.header-container').innerHTML = header;
                 document.querySelector('.footer-container').innerHTML = footer;
 
-                // تهيئة القائمة بعد التحميل
+                // تهيئة القائمة الجانبية بعد تحميل المحتوى
                 initSidebar();
 
                 // تهيئة زر القائمة للجوال
                 document.getElementById('mobileToggle')?.addEventListener('click', function () {
-                    document.querySelector('.sidebar').classList.toggle('collapsed');
+                    document.querySelector('.sidebar-right').classList.toggle('collapsed');
                 });
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleBtn = document.getElementById('menuToggleBtn');
+                const popupMenu = document.getElementById('popupMenu');
+                if (menuToggleBtn && popupMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleBtn.addEventListener('click', function () {
+                        popupMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleButton = document.getElementById('menuToggleButton');
+                const subMenu = document.getElementById('subMenu');
+                if (menuToggleButton && subMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleButton.addEventListener('click', function () {
+                        subMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
             })
             .catch(error => {
                 console.error('حدث خطأ في تحميل المكونات:', error);
@@ -139,20 +156,20 @@
         // التعامل مع تغيير حجم النافذة
         window.addEventListener('resize', function () {
             if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar').classList.add('collapsed');
+                document.querySelector('.sidebar-right').classList.add('collapsed');
             } else {
                 // استعادة الحالة فقط للشاشات الكبيرة
                 const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
-                document.querySelector('.sidebar').classList.toggle('collapsed', shouldCollapse);
+                document.querySelector('.sidebar-right').classList.toggle('collapsed', shouldCollapse);
             }
         });
 
-        // تهيئة أولية عند التحميل
         window.addEventListener('DOMContentLoaded', function () {
             if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar')?.classList.add('collapsed');
+                document.querySelector('.sidebar-right')?.classList.add('collapsed');
             }
         });
+
     </script>
 </body>
 

@@ -11,6 +11,8 @@ body {
 .menu {
     background: #ffffff;
     padding-bottom: 40px;
+    margin-top: 30%;
+    margin-right: 70%;
 }
 
 .menu .btn-icon {
@@ -54,4 +56,14 @@ body {
 
 .menu .btn-control:hover {
     background-color: #8a0000;
+}
+
+.btn{
+    width: 60px;
+    height: 60px;
+    border-radius: 70%;
+    background-color: #8a0000;
+}
+.fab{
+    color:white;
 }

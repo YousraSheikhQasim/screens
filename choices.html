@@ -17,19 +17,19 @@
   <link rel="stylesheet" href="choice.css">
 </head>
 
-<body>
+<body class="ba" style="background-color: rgb(255, 243, 243);">
 
   <nav class="menu-right"></nav>
   <nav class="menu-left"></nav>
   <nav class="header-container"></nav>
-
+  <button class="back"> < رجوع </button>
   <div class="container table-box">
 
     <!-- Tabs -->
-    <div class="d-flex flex-wrap gap-2 mb-4 justify-content-center justify-content-md-start">
+    <div class="d-flex flex-wrap gap-2 mb-2 justify-content-center justify-content-md-start">
       <button class="custom-btn">خصائص المستندات</button>
-      <button class="custom-btn active">النطاق</button>
-      <button class="custom-btn">خيارات</button>
+      <button class="custom-btn ">النطاق</button>
+      <button class="custom-btn active">خيارات</button>
     </div>
 
     <!-- خيارات -->
@@ -78,24 +78,88 @@
   <nav class="footer-container"></nav>
 
   <script>
-    fetch('menu.html')
-      .then(response => response.text())
-      .then(data => {
-        document.querySelector('.menu-right').innerHTML = data;
-      });
+    // دالة لتهيئة القائمة الجانبية
+    function initSidebar() {
+        const sidebar = document.querySelector('.sidebar-right');  // تأكد من أنك تستهدف الصنف الصحيح
+        const toggleBtn = document.querySelector('.toggle-btn');
 
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.querySelector('.footer-container').innerHTML = data;
-      });
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+                document.body.classList.toggle('collapsed'); // أضف هذا
+                localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+            });
+        }
 
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.querySelector('.header-container').innerHTML = data;
-      });
-  </script>
+        // استعادة الحالة من localStorage
+        if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            sidebar.classList.add('collapsed');
+            document.body.classList.add('collapsed'); // أضف هذا
+        }
+    }
+
+    // تحميل القوائم
+    Promise.all([
+        fetch('menu1.html').then(res => res.text()),
+        fetch('header.html').then(res => res.text()),
+        fetch('footer.html').then(res => res.text())
+    ])
+        .then(([menu, header, footer]) => {
+            // إضافة المحتوى إلى الصفحة بعد تحميل المكونات
+            document.querySelector('.menu-right').innerHTML = menu;
+            document.querySelector('.header-container').innerHTML = header;
+            document.querySelector('.footer-container').innerHTML = footer;
+
+            // تهيئة القائمة الجانبية بعد تحميل المحتوى
+            initSidebar();
+
+            // تهيئة زر القائمة للجوال
+            document.getElementById('mobileToggle')?.addEventListener('click', function () {
+                document.querySelector('.sidebar-right').classList.toggle('collapsed');
+            });
+
+            // تهيئة زر القائمة المنبثقة
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const popupMenu = document.getElementById('popupMenu');
+            if (menuToggleBtn && popupMenu) {
+                // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                menuToggleBtn.addEventListener('click', function () {
+                    popupMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                });
+            }
+
+            // تهيئة زر القائمة المنبثقة
+            const menuToggleButton = document.getElementById('menuToggleButton');
+            const subMenu = document.getElementById('subMenu');
+            if (menuToggleButton && subMenu) {
+                // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                menuToggleButton.addEventListener('click', function () {
+                    subMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                });
+            }
+        })
+        .catch(error => {
+            console.error('حدث خطأ في تحميل المكونات:', error);
+        });
+
+    // التعامل مع تغيير حجم النافذة
+    window.addEventListener('resize', function () {
+        if (window.innerWidth <= 768) {
+            document.querySelector('.sidebar-right').classList.add('collapsed');
+        } else {
+            // استعادة الحالة فقط للشاشات الكبيرة
+            const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
+            document.querySelector('.sidebar-right').classList.toggle('collapsed', shouldCollapse);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', function () {
+        if (window.innerWidth <= 768) {
+            document.querySelector('.sidebar-right')?.classList.add('collapsed');
+        }
+    });
+
+</script>
 
 </body>
 

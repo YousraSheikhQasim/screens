@@ -47,34 +47,92 @@ body {
     margin-top: 130px;
 }
 
-.sidebar-custom {
-    position: fixed;
-    font-family: 'Cairo', sans-serif;
-    top: 0;
-    right: 0;
-    width: 220px;
-    height: 100vh;
-    background-color: #ffffff;
-    padding: 20px;
-}
 
-.sidebar-left-custom {
-    position: fixed;
-    font-family: 'Cairo', sans-serif;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 100vh;
-    background: #2d2d2d;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 16px;
-}
-
+/* للتأكد من أن القوائم تظهر بشكل صحيح في الوضع المدمج */
 @media (max-width: 992px) {
-    .main-content {
-        margin-right: 0;
-        margin-left: 0;
+    .left-sidebar, .right-sidebar {
+        z-index: 1050; /* أعلى من كل شيء */
     }
+    
+    .main-content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+.menu-right {
+    font-family: 'Cairo', sans-serif;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    transition: all 0.3s;
+}
+
+.menu-right.collapsed {
+    right: -200px;
+}
+
+.right-sidebar .toggle-btn {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.menu-right {
+    font-family: 'Cairo', sans-serif;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    transition: all 0.3s;
+    background-color: rgb(255, 243, 243); /* نفس لون body */
+    
+}
+
+.menu-right.collapsed {
+    right: -200px;
+}
+
+.right-sidebar .toggle-btn {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.popup-menu {
+    display: none; /* إخفاء القائمة بشكل افتراضي */
+}
+
+.popup-menu.show {
+    display: block; /* إظهار القائمة عند تفعيل الزر */
+}
+.menu-right.collapsed ~ .main-content {
+    margin-right: 0;
+}
+/* الوضع الطبيعي عندما تكون القائمة ظاهرة */
+.with-sidebar .main-content {
+    margin-right: 250px;
+}
+
+/* عندما تكون القائمة مطوية */
+.with-sidebar.collapsed .main-content {
+    margin-right: 0;
+}
+.back{
+    margin-top: 10rem;
+    background-color: rgb(255, 243, 243); /* نفس لون body */
+    position: fixed;
+    right: 520px;
+    top: -5rem;
+    width: 100px;
+    height: 60px;
+    color: rgba(17, 15, 15, 0.589);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cairo', sans-serif;
 }

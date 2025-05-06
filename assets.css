@@ -12,10 +12,10 @@ body {
 .box {
     font-family: 'Cairo', sans-serif;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 2rem;
-    margin-top: -25rem;
+    margin-top: -30rem;
     margin-right: 30rem;
   
 }
@@ -64,7 +64,7 @@ body {
     color: #9c1c1c;
 }
 
-
+/* تخصيصات إضافية للشكل */
 h2 {
     color: #444;
     font-weight: 600;
@@ -76,7 +76,7 @@ h2 {
     font-family: 'Cairo', sans-serif;
 }
 
-
+/* تعديلات للتوافق مع RTL */
 .form-select {
     font-family: 'Cairo', sans-serif;
     background-position: left 0.75rem center;
@@ -98,7 +98,7 @@ h2 {
     margin-top: 10rem;
     background-color: rgb(255, 243, 243); /* نفس لون body */
     position: fixed;
-    right: 670px;
+    right: 680px;
     top: -5rem;
     width: 100px;
     height: 60px;

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="mainWindow.css">
 </head>
 
-<body>
+<body class="ba" style="background-color: rgb(255, 243, 243);">
     <!-- شريط القائمة اليمنى -->
     <nav class="menu-right"></nav>
 
@@ -20,6 +20,17 @@
 
     <!-- الهيدر -->
     <nav class="header-container mb-4"></nav>
+    <div class="tabs-container">
+        <button class="tab active">نافذة الرئيسية</button>
+        <button class="tab">وصف إضافي</button>
+        <button class="tab">التسعير الضوابط</button>
+        <button class="tab">حسابات</button>
+        <button class="tab">أرصفة</button>
+        <button class="tab">مبيعات</button>
+        <button class="tab">منشورات</button>
+      </div>
+    <button class="back"> < رجوع </button>
+
 
     <!-- النموذج الرئيسي -->
     <form id="workForm" class="container p-4">
@@ -166,14 +177,13 @@
     <script>
         // دالة لتهيئة القائمة الجانبية
         function initSidebar() {
-            const sidebar = document.querySelector('.sidebar');
+            const sidebar = document.querySelector('.sidebar-right');  // تأكد من أنك تستهدف الصنف الصحيح
             const toggleBtn = document.querySelector('.toggle-btn');
-            const mobileToggle = document.getElementById('mobileToggle');
 
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', function () {
                     sidebar.classList.toggle('collapsed');
-                    // حفظ الحالة في localStorage
+                    document.body.classList.toggle('collapsed'); 
                     localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
                 });
             }
@@ -181,27 +191,49 @@
             // استعادة الحالة من localStorage
             if (localStorage.getItem('sidebarCollapsed') === 'true') {
                 sidebar.classList.add('collapsed');
+                document.body.classList.add('collapsed'); 
             }
         }
 
         // تحميل القوائم
         Promise.all([
-            fetch('menu.html').then(res => res.text()),
-            fetch('header.html').then(res => res.text()),
+            fetch('menu1.html').then(res => res.text()),
+            fetch('headerMainWindow.html').then(res => res.text()),
             fetch('footer.html').then(res => res.text())
         ])
             .then(([menu, header, footer]) => {
+                // إضافة المحتوى إلى الصفحة بعد تحميل المكونات
                 document.querySelector('.menu-right').innerHTML = menu;
                 document.querySelector('.header-container').innerHTML = header;
                 document.querySelector('.footer-container').innerHTML = footer;
 
-                // تهيئة القائمة بعد التحميل
+                // تهيئة القائمة الجانبية بعد تحميل المحتوى
                 initSidebar();
 
                 // تهيئة زر القائمة للجوال
                 document.getElementById('mobileToggle')?.addEventListener('click', function () {
-                    document.querySelector('.sidebar').classList.toggle('collapsed');
+                    document.querySelector('.sidebar-right').classList.toggle('collapsed');
                 });
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleBtn = document.getElementById('menuToggleBtn');
+                const popupMenu = document.getElementById('popupMenu');
+                if (menuToggleBtn && popupMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleBtn.addEventListener('click', function () {
+                        popupMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleButton = document.getElementById('menuToggleButton');
+                const subMenu = document.getElementById('subMenu');
+                if (menuToggleButton && subMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleButton.addEventListener('click', function () {
+                        subMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
             })
             .catch(error => {
                 console.error('حدث خطأ في تحميل المكونات:', error);
@@ -210,20 +242,20 @@
         // التعامل مع تغيير حجم النافذة
         window.addEventListener('resize', function () {
             if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar').classList.add('collapsed');
+                document.querySelector('.sidebar-right').classList.add('collapsed');
             } else {
                 // استعادة الحالة فقط للشاشات الكبيرة
                 const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
-                document.querySelector('.sidebar').classList.toggle('collapsed', shouldCollapse);
+                document.querySelector('.sidebar-right').classList.toggle('collapsed', shouldCollapse);
             }
         });
 
-        // تهيئة أولية عند التحميل
         window.addEventListener('DOMContentLoaded', function () {
             if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar')?.classList.add('collapsed');
+                document.querySelector('.sidebar-right')?.classList.add('collapsed');
             }
         });
+
     </script>
 </body>
 

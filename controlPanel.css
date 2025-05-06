@@ -1,7 +1,7 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     gap: 20px;
 }
 
@@ -40,7 +40,7 @@
 .doughnut-purchases-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     justify-content: space-between;
 }
@@ -56,6 +56,7 @@
     flex-direction: column;
     margin-right: 300px;
     width: 1000px;
+    margin-top: 10rem;
 }
 
 .purchases-chart-container {
@@ -69,6 +70,7 @@
     flex-direction: column;
     margin-right: 10px;
     width: 1000px;
+    margin-top: 10rem;
 }
 
 .doughnut-labels {
@@ -79,39 +81,25 @@
 }
 
 .five-cards {
-    flex: 1.5;
-    margin-top: 10rem;
-    margin-left: 1000px;
-    margin-right: 10px;
-}
-
-#menu-right .sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 200px;
-    background: #ffffff;
-    height: 100vh;
-    color: white;
-}
-
-#menu-left .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60px;
-    background: #2d2d2d;
-    height: 100vh;
+    flex: 1;
+    border-radius: 10px;
+    padding: 20px;
+    height: 400px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 16px;
+    margin-right: -65rem;
+    width: 1000px;
+    margin-top: 10rem;
 }
-
 h1 {
     text-align: right;
     color: #2d2d2d;
     font-size: 24px;
     margin-top: 70px;
     margin-right: 20px;
+}
+@media (max-width: 768px) {
+    .five-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

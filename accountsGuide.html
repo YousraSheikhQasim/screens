@@ -10,135 +10,84 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: #f9f9f9;
-            padding: 20px;
-        }
+    <link href="accountsGuide.css" rel="stylesheet">
 
-        .menu {
-            background: #fff;
-            border-radius: 50px;
-            padding-left: 100rem;
-            padding-left: 10rem;
-            margin-top: 70px;
-            margin-right: 20%;
-            font-family: 'Cairo', sans-serif;
-            max-width: 100%;
-        }
-
-        .menu .btn {
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-
-            justify-content: center;
-            font-size: 18px;
-            color: #000;
-            background: #fff;
-            font-family: 'Cairo', sans-serif;
-            border: 1px solid #ddd;
-        }
-
-        .menu .btn:hover {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f2f2f2;
-        }
-
-        .input {
-            font-family: 'Cairo', sans-serif;
-            width: 200px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-        }
-
-        .report-header h1 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-
-        .report-header h2 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 18px;
-            margin-bottom: 15px;
-            margin-right: 50%;
-        }
-
-
-        table {
-            font-family: 'Cairo', sans-serif;
-            background: #fff;
-        }
-
-        thead {
-            font-family: 'Cairo', sans-serif;
-            background: #f0f0f0;
-        }
-
-        .serial {
-            font-family: 'Cairo', sans-serif;
-            width: 40px;
-        }
-    </style>
 </head>
 
-<body>
+<body class="ba" style="background-color: rgb(255, 243, 243);">
     <nav class="menu-right"></nav>
     <nav class="header-container"></nav>
     <!-- القوائم الجانبية -->
 
     <nav class="menu-left"></nav>
     <!-- القائمة -->
-    <div class="menu d-flex flex-wrap align-items-center justify-content-center gap-4">
-        <select class="form-select w-auto " name="options">
-            <option value="1">الخيار الأول</option>
-            <option value="2">الخيار الثاني</option>
-            <option value="3">الخيار الثالث</option>
-        </select>
-
-        <a href="#" class="btn"><i class="bi bi-copy"></i></a>
-        <a href="#" class="btn"><i class="bi bi-repeat"></i></a>
-        <a href="#" class="btn"><i class="bi bi-folder-x"></i></a>
-
-        <a href="#" class="btn"><i class="bi bi-skip-end"></i></a>
-        <a href="#" class="btn"><i class="bi bi-chevron-bar-right"></i></a>
-        <a href="#" class="btn"><i class="bi bi-chevron-right"></i></a>
-        <input class="input" type="text" placeholder="انهيت 9 صفحة من 290">
-        <a href="#" class="btn"><i class="bi bi-chevron-left"></i></a>
-        <a href="#" class="btn"><i class="bi bi-chevron-bar-left"></i></a>
-
-        <input class="input gap-4" type="text" placeholder=" 9 صفحة من 290">
-
-        <a href="#" class="btn"><i class="bi bi-chevron-left"></i></a>
-        <a href="#" class="btn"><i class="bi bi-chevron-bar-left"></i></a>
-    </div>
-
-    <!-- محتوى التقرير -->
-    <div class="container bg-white rounded shadow-sm p-4">
-        <div class="report-header text-center mb-10 ms-10 mt-10">
-
-            <h1>مؤسسة الساحة للتجارة 2000</h1>
-            <h2>دليل الحسابات</h2>
+    
+    <button class="back"> < رجوع </button>
+    <div class="container bg-white rounded shadow-sm" style="width: 100%; ">
+        
+        <div class="menu-bar d-flex flex-nowrap align-items-center gap-4" style="width: 100%;">
+            <!-- Select Dropdown -->
+            <select class="form-select gap-2" style="width: 35%;" name="options">
+                <option value="1">الخيار الأول</option>
+                <option value="2">الخيار الثاني</option>
+                <option value="3">الخيار الثالث</option>
+            </select>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex flex-nowrap gap-1">
+                <a href="#" class="btn " title="طباعة">
+                    <i class="bi bi-printer"></i>
+                </a>
+                <a href="#" class="btn" title="نسخ">
+                    <i class="bi bi-copy"></i>
+                </a>
+                <a href="#" class="btn" title="خروج">
+                    <i class="bi bi-box-arrow-left"></i>
+                </a>
+            </div>
+            
+            <!-- Page Navigation -->
+            <div class="d-flex flex-nowrap align-items-center ">
+                <input class="form-control text-center gap-5 " type="text" 
+                       placeholder="انهيت 9 صفحة من 290" style="width: 400%;">
+                
+                <div class="d-flex flex-nowrap gap-1">
+                    <a href="#" class="btn" title="الصفحة الأولى">
+                        <i class="bi bi-chevron-bar-right"></i>
+                    </a>
+                    <a href="#" class="btn" title="الصفحة التالية">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <input class="form-control text-center" type="text" 
+                       placeholder="9 صفحة من 290" style="width: 200%;">
+                
+                <div class="d-flex flex-nowrap gap-1">
+                    <a href="#" class="btn" title="الصفحة السابقة">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                    <a href="#" class="btn" title="الصفحة الأخيرة">
+                        <i class="bi bi-chevron-bar-left"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-
+    
+        <div class="report-header text-center mb-4 mt-4">
+            <h4> الساحة للتجارة 2000 (جديد)</h4>
+            <h5>دليل الحسابات</h5>
+        </div>
         <div class="d-flex justify-content-between mb-3 text-muted small">
-            <div>
-                <p class="mb-1">الصفحة: 1</p>
-                <p class="mb-0">ماجد عبدالكريم الرشيد</p>
-            </div>
-            <div>
-                <p class="mb-1">11-09-2004</p>
-                <p class="mb-0">18:34:29</p>
+            <div class="ms-auto">
+                <p class="mb-1">11-09-2004  18:34:29</p>
+                <p class="mb-0">صفحة      1</p>
+                <p class="mb-0">ماجد عبدالكريم السويل</p>
             </div>
         </div>
-
+    
         <div class="table-responsive">
-            <table class="table text-center align-middle">
+            <table class="table table-sm text-center align-middle">
                 <thead>
                     <tr>
                         <th class="serial">#</th>
@@ -188,14 +137,13 @@
     <script>
         // دالة لتهيئة القائمة الجانبية
         function initSidebar() {
-            const sidebar = document.querySelector('.sidebar');
+            const sidebar = document.querySelector('.sidebar-right');  // تأكد من أنك تستهدف الصنف الصحيح
             const toggleBtn = document.querySelector('.toggle-btn');
-            const mobileToggle = document.getElementById('mobileToggle');
 
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', function () {
                     sidebar.classList.toggle('collapsed');
-                    // حفظ الحالة في localStorage
+                    document.body.classList.toggle('collapsed'); // أضف هذا
                     localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
                 });
             }
@@ -203,27 +151,49 @@
             // استعادة الحالة من localStorage
             if (localStorage.getItem('sidebarCollapsed') === 'true') {
                 sidebar.classList.add('collapsed');
+                document.body.classList.add('collapsed'); // أضف هذا
             }
         }
 
         // تحميل القوائم
         Promise.all([
-            fetch('menu.html').then(res => res.text()),
+            fetch('menu1.html').then(res => res.text()),
             fetch('header.html').then(res => res.text()),
             fetch('footer.html').then(res => res.text())
         ])
             .then(([menu, header, footer]) => {
+                // إضافة المحتوى إلى الصفحة بعد تحميل المكونات
                 document.querySelector('.menu-right').innerHTML = menu;
                 document.querySelector('.header-container').innerHTML = header;
                 document.querySelector('.footer-container').innerHTML = footer;
 
-                // تهيئة القائمة بعد التحميل
+                // تهيئة القائمة الجانبية بعد تحميل المحتوى
                 initSidebar();
 
                 // تهيئة زر القائمة للجوال
                 document.getElementById('mobileToggle')?.addEventListener('click', function () {
-                    document.querySelector('.sidebar').classList.toggle('collapsed');
+                    document.querySelector('.sidebar-right').classList.toggle('collapsed');
                 });
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleBtn = document.getElementById('menuToggleBtn');
+                const popupMenu = document.getElementById('popupMenu');
+                if (menuToggleBtn && popupMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleBtn.addEventListener('click', function () {
+                        popupMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
+
+                // تهيئة زر القائمة المنبثقة
+                const menuToggleButton = document.getElementById('menuToggleButton');
+                const subMenu = document.getElementById('subMenu');
+                if (menuToggleButton && subMenu) {
+                    // ربط الزر بالوظيفة لإظهار وإخفاء القائمة المنبثقة
+                    menuToggleButton.addEventListener('click', function () {
+                        subMenu.classList.toggle('show'); // إضافة أو إزالة الكلاس لإظهار/إخفاء القائمة
+                    });
+                }
             })
             .catch(error => {
                 console.error('حدث خطأ في تحميل المكونات:', error);
@@ -232,22 +202,22 @@
         // التعامل مع تغيير حجم النافذة
         window.addEventListener('resize', function () {
             if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar').classList.add('collapsed');
+                document.querySelector('.sidebar-right').classList.add('collapsed');
             } else {
                 // استعادة الحالة فقط للشاشات الكبيرة
                 const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
-                document.querySelector('.sidebar').classList.toggle('collapsed', shouldCollapse);
+                document.querySelector('.sidebar-right').classList.toggle('collapsed', shouldCollapse);
             }
         });
 
-        // تهيئة أولية عند التحميل
         window.addEventListener('DOMContentLoaded', function () {
             if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar')?.classList.add('collapsed');
+                document.querySelector('.sidebar-right')?.classList.add('collapsed');
             }
         });
 
     </script>
+    
 </body>
 
 </html>

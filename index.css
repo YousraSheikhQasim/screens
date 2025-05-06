@@ -4,8 +4,6 @@ body {
 }
 
 .main-container {
-    margin-right: 250px;
-    margin-left: 20px;
     transition: all 0.3s;
     font-family: 'Cairo', sans-serif;
 }
@@ -13,10 +11,11 @@ body {
 .form-card {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: none;
-    margin-top: 100px;
-    margin-right: 390px;
-    max-width: 80rem;
+    border-radius: 100rem;
+    margin-top: -25rem;
+    margin-right: -1rem;
+    width: 100rem;
+    height: 100rem;
     font-family: 'Cairo', sans-serif;
 }
 
@@ -96,4 +95,59 @@ body {
     .main-container {
         margin-right: 0;
     }
+}
+.menu-right {
+    font-family: 'Cairo', sans-serif;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    transition: all 0.3s;
+}
+
+.menu-right.collapsed {
+    right: -200px;
+}
+
+.right-sidebar .toggle-btn {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.custom-btn.issuing {
+    background-color: rgb(156, 28, 28);
+    color: white;
+    padding: 0.5rem 2rem;
+}
+
+.custom-btn.view {
+    border: 1px solid rgb(156, 28, 28);
+    color: rgb(156, 28, 28);
+    padding: 0.5rem 2rem;
+}
+.custom-btn {
+    border-radius: 40px;
+    border: 1px solid rgb(156, 28, 28);
+    color: rgb(156, 28, 28);
+    padding: 0.5rem 1.2rem;
+    background-color: white;
+    font-family: 'Cairo', sans-serif;
+}
+.back{
+    margin-top: 10rem;
+    background-color: rgb(255, 243, 243); /* نفس لون body */
+    position: fixed;
+    right: 450px;
+    top: -5rem;
+    width: 100px;
+    height: 60px;
+    color: rgba(17, 15, 15, 0.589);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cairo', sans-serif;
 }
