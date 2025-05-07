@@ -13,13 +13,17 @@ body {
 }
 
 .container{
-    margin-right: 100px; /* إزاحة إلى اليسار في RTL */
-    margin-left: auto; /* لموازنة العنصر */
-    margin-top:-190px;
-    border-radius: 30px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: -100px;
+    max-width: 87rem !important;
     height: 40rem;
-
+    margin-right: 36rem !important;
 }
+
 .menu .btn {
     border-radius: 50%;
     width: 100px;
@@ -74,29 +78,7 @@ thead {
     background: #f0f0f0;
 }
 
-.serial {
-    font-family: 'Cairo', sans-serif;
-    width: 40px;
-}
-.menu-right {
-    font-family: 'Cairo', sans-serif;
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    width: 250px;
-    transition: all 0.3s;
-}
 
-.menu-right.collapsed {
-    right: -200px;
-}
-
-.right-sidebar .toggle-btn {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-}
 .back{
     margin-top: 13rem;
     background-color: rgb(255, 243, 243); /* نفس لون body */

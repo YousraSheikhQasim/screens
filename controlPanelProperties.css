@@ -17,6 +17,7 @@ body {
     padding: 2rem;
     margin-top: -25rem;
     margin-right: 30rem;
+    width:90rem;
   
 }
 
@@ -44,26 +45,6 @@ body {
 .btn.asset:hover {
     background-color: #f1f1f1;
 }
-
-/* تخصيصات السايدبار */
-.sidebar {
-    font-family: 'Cairo', sans-serif;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar ul li a {
-    font-family: 'Cairo', sans-serif;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar ul li a:hover {
-    background-color: #f1f1f1;
-}
-
-.indicator {
-    color: #9c1c1c;
-}
-
 
 h2 {
     color: #444;

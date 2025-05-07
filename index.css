@@ -6,16 +6,15 @@ body {
 .main-container {
     transition: all 0.3s;
     font-family: 'Cairo', sans-serif;
+    max-height: 110rem;
 }
 
 .form-card {
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 100rem;
     margin-top: -25rem;
-    margin-right: -1rem;
-    width: 100rem;
-    height: 100rem;
+    margin-right: 4rem;
+    width: 105rem;
     font-family: 'Cairo', sans-serif;
 }
 
@@ -96,25 +95,7 @@ body {
         margin-right: 0;
     }
 }
-.menu-right {
-    font-family: 'Cairo', sans-serif;
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    width: 250px;
-    transition: all 0.3s;
-}
 
-.menu-right.collapsed {
-    right: -200px;
-}
-
-.right-sidebar .toggle-btn {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-}
 .custom-btn.issuing {
     background-color: rgb(156, 28, 28);
     color: white;

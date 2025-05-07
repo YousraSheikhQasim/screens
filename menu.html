@@ -6,144 +6,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قائمة جانبية متجاوبة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="menu.css" rel="stylesheet">
     <style>
         .sidebar {
-            width: 220px;
-            transition: all 0.3s ease;
-        }
+    width: 220px;
+    transition: all 0.3s ease;
+}
 
-        .sidebar.collapsed {
-            width: 60px !important;
-        }
+.sidebar.collapsed {
+    width: 60px !important;
+}
 
-        .sidebar.collapsed span {
-            display: none;
-        }
+.sidebar.collapsed span {
+    display: none;
+}
 
-        .sidebar.collapsed .nav-link {
-            justify-content: center !important;
-        }
+.sidebar.collapsed .nav-link {
+    justify-content: center !important;
+}
 
-        .sidebar.collapsed .logo {
-            max-width: 40px;
-        }
+.sidebar.collapsed .logo {
+    max-width: 40px;
+}
 
-        .sidebar .nav-link {
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
+.sidebar .nav-link {
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
 
-        .sidebar .nav-link.active {
-            background-color: #ffeaea;
-            color: #9c1c1c !important;
-        }
+.sidebar .nav-link.active {
+    background-color: #ffeaea;
+    color: #9c1c1c !important;
+}
 
-        .sidebar .nav-link:hover:not(.active) {
-            background-color: #f8f9fa;
-        }
+.sidebar .nav-link:hover:not(.active) {
+    background-color: #f8f9fa;
+}
 
-        .logo {
-            max-width: 100px;
-            margin: 15px auto;
-            display: block;
-        }
+.logo {
+    max-width: 100px;
+    margin: 15px auto;
+    display: block;
+}
 
-        .main-content {
-            margin-right: 220px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
+.main-content {
+    margin-right: 220px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
 
-        .sidebar.collapsed~.main-content {
-            margin-right: 60px;
-        }
+.sidebar.collapsed~.main-content {
+    margin-right: 60px;
+}
 
+.toggle-btn:hover {
+    color: #495057;
+}
 
+.toggle-btn i {
+    transition: transform 0.3s ease;
+}
 
-        .toggle-btn:hover {
-            color: #495057;
-        }
+.sidebar.collapsed .toggle-btn i {
+    transform: rotate(180deg);
+}
 
-        .toggle-btn i {
-            transition: transform 0.3s ease;
-        }
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px !important;
+    }
 
-        .sidebar.collapsed .toggle-btn i {
-            transform: rotate(180deg);
-        }
+    .sidebar span {
+        display: none;
+    }
 
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 60px !important;
-            }
+    .sidebar .nav-link {
+        justify-content: center !important;
+    }
 
-            .sidebar span {
-                display: none;
-            }
+    .sidebar .logo {
+        max-width: 40px;
+    }
 
-            .sidebar .nav-link {
-                justify-content: center !important;
-            }
+    .main-content {
+        margin-right: 60px !important;
+    }
 
-            .sidebar .logo {
-                max-width: 40px;
-            }
+    .toggle-btn {
+        padding: 5px 0;
+    }
+}
 
-            .main-content {
-                margin-right: 60px !important;
-            }
+.toggle-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: center;
+    padding: 8px 0;
+    margin: 10px auto;
+    margin-bottom: 2.5rem;
+    color: #9c1c1c;
+    background-color: hsl(210, 8%, 85%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
 
-            .toggle-btn {
-                padding: 5px 0;
-            }
-        }
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: #e0e0e0;
+    margin: -60px 20px 15px;
+    position: center;
+    margin-right: 0;
+}
 
-        .toggle-btn {
-            cursor: pointer;
-            background: none;
-            border: none;
-            text-align: center;
-            padding: 8px 0;
-            margin: 10px auto;
-            margin-bottom: 2.5rem;
-            /* تعديل الهوامش */
-            color: #9c1c1c;
-            background-color: hsl(210, 8%, 85%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            /* للتأكد من ظهور الزر فوق الخط */
-        }
+.nav {
+    margin-top: 2rem;
+}
 
-        .divider {
-            height: 1px;
-            width: 100%;
-            background-color: #e0e0e0;
-            margin: -60px 20px 15px;
-            /* تعديل الهوامش لدمج الزر مع الخط */
-            position: center;
-            margin-right: 0;
-          
-        }
+/* إظهار أيقونات bi فقط عند طي القائمة */
+.nav-link .bi-icon {
+    display: none;
+}
 
-        /* أو للخط الرأسي (إذا كنت تريد خطاً عمودياً) */
-        .divider-vertical {
-            width: 1px;
-            /* للخط الرأسي */
-            height: 50px;
-            /* ارتفاع الخط */
-            background-color: #e0e0e0;
-            margin: 0 auto;
-        }
-        .nav{
-            margin-top: 2rem;
-        }
+.sidebar.collapsed .nav-link .bi-icon {
+    display: inline-block;
+}
+
+/* إظهار سهم Font Awesome في جميع الحالات */
+.nav-link .fa-chevron-down {
+    display: inline-block;
+}
+
+/* إخفاء سهم Font Awesome عند طي القائمة */
+.sidebar.collapsed .nav-link .fa-chevron-down {
+    display: none;
+}
+
+/* محاذاة العناصر داخل nav-link */
+.nav-link > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
     </style>
 </head>
 
@@ -155,7 +168,7 @@
 
         <!-- زر التبديل تحت اللوجو -->
         <button class="toggle-btn d-none d-lg-block">
-            <i class="fa-solid fa-angles-right"></i>
+            <i class="fas fa-angles-right"></i>
         </button>
         <div class="divider"></div>
 
@@ -163,97 +176,120 @@
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center active">
                     <span>لوحة التحكم</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-house-door bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>المخزون</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-bezier2 bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>المبيعات</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-graph-up bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>المشتريات</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-cart bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>إدارة العمليات</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-diagram-3 bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>الأصول الثابتة</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-backpack2-fill bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>البنوك</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-bank bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>حسابات</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-coin bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>موارد بشرية</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-person bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-black d-flex justify-content-between align-items-center">
                     <span>التقارير</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <div>
+                        <i class="bi bi-file-earmark-text bi-icon"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </a>
             </li>
         </ul>
     </nav>
 
-    <!-- محتوى الصفحة الرئيسي -->
-    <div class="main-content">
-        <button class="btn btn-primary d-lg-none mb-3" type="button" id="mobileToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        <!-- محتوى الصفحة هنا -->
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             const sidebar = document.querySelector('.sidebar');
             const toggleBtn = document.querySelector('.toggle-btn');
-            const mobileToggle = document.getElementById('mobileToggle');
 
-            // زر التبديل للشاشات الكبيرة
-            toggleBtn.addEventListener('click', function () {
-                sidebar.classList.toggle('collapsed');
-            });
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    sidebar.classList.toggle('collapsed');
+                    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+                });
+            }
 
-            // زر التبديل للشاشات الصغيرة
-            mobileToggle.addEventListener('click', function () {
-                sidebar.classList.toggle('collapsed');
-            });
+            // استعادة الحالة من localStorage
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+            }
 
             function handleResize() {
                 if (window.innerWidth <= 768) {
                     sidebar.classList.add('collapsed');
                 } else {
-                    sidebar.classList.remove('collapsed');
+                    const shouldCollapse = localStorage.getItem('sidebarCollapsed') === 'true';
+                    sidebar.classList.toggle('collapsed', shouldCollapse);
                 }
             }
 
@@ -261,6 +297,7 @@
             handleResize();
         });
     </script>
+
 </body>
 
 </html>
